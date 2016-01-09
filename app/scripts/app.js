@@ -1,34 +1,38 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name goToVacationApp
- * @description
- * # goToVacationApp
- *
- * Main module of the application.
- */
-angular
-  .module('goToVacationApp', [
+angular.module('goToVacationApp', [
+    'ui.router',
     'ngAnimate',
     'ngMessages',
     'ngResource',
-    'ngRoute',
     'ngSanitize'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
+  .config(function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+    .state('main', {
+      url: '/',
+      views: {
+        'header': {
+          templateUrl:'views/header.html'
+        },
+        'content': {
+          templateUrl:'views/main.html',
+          controller:'MainCtrl'
+        },
+        'footer': {
+          templateUrl:'views/footer.html'
+        }
+      }
+    })
+    .state('about', {
+      url: '/about',
+      views: {
+      'content@': {
+          templateUrl : 'views/about.html',
+          controller  : 'AboutCtrl'
+        }
+      }
+    });
+
+    $urlRouterProvider.otherwise('/');
   });

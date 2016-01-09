@@ -7,6 +7,7 @@ var openURL = require('open');
 var lazypipe = require('lazypipe');
 var rimraf = require('rimraf');
 var wiredep = require('wiredep').stream;
+var browserSync = require('browser-sync');
 var runSequence = require('run-sequence');
 
 var yeoman = {
@@ -90,7 +91,7 @@ gulp.task('start:server:test', function() {
   });
 });
 
-gulp.task('watch', function () {
+gulp.task('watch-old', function () {
   $.watch(paths.styles)
     .pipe($.plumber())
     .pipe(styles())
@@ -109,19 +110,21 @@ gulp.task('watch', function () {
     .pipe($.plumber())
     .pipe(lintScripts());
 
-  gulp.watch('bower.json', ['bower']);
+    gulp.watch('bower.json', ['bower']);
 });
 
 gulp.task('serve', function (cb) {
-  runSequence('clean:tmp',
+  runSequence(
+    'clean:tmp',
     ['lint:scripts'],
     ['start:client'],
-    'watch', cb);
+    'watch-old', cb);
 });
 
 gulp.task('serve:prod', function() {
   $.connect.server({
     root: [yeoman.dist],
+    index: "index.html",
     livereload: true,
     port: 9000
   });
@@ -132,7 +135,7 @@ gulp.task('test', ['start:server:test'], function () {
   return gulp.src(testToFiles)
     .pipe($.karma({
       configFile: paths.karma,
-      action: 'watch'
+      action: 'watch-old'
     }));
 });
 
@@ -167,8 +170,6 @@ gulp.task('client:build', ['html', 'styles'], function () {
     .pipe(cssFilter)
     .pipe($.minifyCss({cache: true}))
     .pipe(cssFilter.restore())
-    .pipe($.rev())
-    .pipe($.revReplace())
     .pipe(gulp.dest(yeoman.dist));
 });
 
