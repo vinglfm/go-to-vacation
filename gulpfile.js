@@ -7,7 +7,6 @@ var openURL = require('open');
 var lazypipe = require('lazypipe');
 var rimraf = require('rimraf');
 var wiredep = require('wiredep').stream;
-var browserSync = require('browser-sync');
 var runSequence = require('run-sequence');
 
 var yeoman = {
