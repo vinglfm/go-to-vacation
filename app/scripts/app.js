@@ -9,7 +9,7 @@ angular.module('goToVacationApp', [
   ])
   .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
-    .state('main', {
+    .state('app', {
       url: '/',
       views: {
         'header': {
@@ -17,19 +17,28 @@ angular.module('goToVacationApp', [
         },
         'content': {
           templateUrl:'views/main.html',
-          controller:'MainCtrl'
+          controller:'MainController'
         },
         'footer': {
           templateUrl:'views/footer.html'
         }
       }
     })
-    .state('main.about', {
+    .state('app.about', {
       url: 'about',
       views: {
       'content@': {
           templateUrl : 'views/about.html',
-          controller  : 'AboutCtrl'
+          controller  : 'AboutController'
+        }
+      }
+    })
+    .state('app.contactus', {
+      url: 'contactus',
+      views: {
+      'content@': {
+          templateUrl : 'views/contactus.html',
+          controller  : 'ContactController'
         }
       }
     });

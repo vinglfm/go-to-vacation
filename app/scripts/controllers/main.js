@@ -8,10 +8,10 @@
  * Controller of the goToVacationApp
  */
 angular.module('goToVacationApp')
-  .controller('MainCtrl', function () {
+  .controller('MainController', ['$state', function ($state) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-  });
+  }]);
