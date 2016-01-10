@@ -24,8 +24,8 @@ angular.module('goToVacationApp', [
         }
       }
     })
-    .state('about', {
-      url: '/about',
+    .state('main.about', {
+      url: 'about',
       views: {
       'content@': {
           templateUrl : 'views/about.html',

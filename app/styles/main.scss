@@ -2,6 +2,12 @@
 // endbower
 $footer-color : #AfAfAf;
 
+body {
+  align: center;
+  padding: 50px 0px 0px 0px;
+  z-index: 0;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
