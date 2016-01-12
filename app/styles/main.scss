@@ -2,10 +2,19 @@
 // endbower
 $footer-color : #AfAfAf;
 
+html {
+background: url(../images/bay.jpg) no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+
 body {
   align: center;
   padding: 50px 0px 0px 0px;
   z-index: 0;
+  background-color: transparent;
 }
 
 .browsehappy {
@@ -18,5 +27,5 @@ body {
 .row-footer {
   margin: 0px auto;
   padding: 20px 0px;
-  background-color: $footer-color;
+  // background-color: $footer-color;
 }
